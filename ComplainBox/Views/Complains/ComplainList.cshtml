@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ComplainBox.Models.Complain>
+
+@{
+    ViewData["Title"] = "Complain List";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h3>Complain List</h3>
+<hr />
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create Complain</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComplainTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComplainTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ComplainId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ComplainId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ComplainId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@if (@Context.Session.GetString("UserName") == null)
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a asp-area="" asp-controller="Complains" asp-action="Login">Login</a>
+        </li>
+        <li>
+            <a asp-area="" asp-controller="Complains" asp-action="Registration">Registration</a>
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hi! " + @Context.Session.GetString("UserName"), "Index", "Complains", null, null)
+        </li>
+        <li>
+            @Html.ActionLink("Logout", "Logout", "Complains", null, null)
+        </li>
+    </ul>
+}
