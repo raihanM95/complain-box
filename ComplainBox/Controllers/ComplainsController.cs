@@ -41,7 +41,7 @@ namespace ComplainBox.Controllers
         // POST: Complains/Registration
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Registration([Bind("UserId,Name,Email,Role,Password,ConfirmPassword")] UserAccount objLoginModel)
+        public async Task<IActionResult> Registration([Bind("UserId,IDNumber,Name,Email,Role,Password,ConfirmPassword")] UserAccount objLoginModel)
         {
             if (ModelState.IsValid)
             {
@@ -190,7 +190,7 @@ namespace ComplainBox.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ComplainId,Name,ComplainTitle,ComplainDescription,Status,UserId")] Complain complain)
+        public async Task<IActionResult> Create([Bind("ComplainId,Name,ComplainDate,ComplainTitle,ComplainDescription,Deadline,Status,UserId")] Complain complain)
         {
             if (ModelState.IsValid)
             {
@@ -230,7 +230,7 @@ namespace ComplainBox.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ComplainId,Name,ComplainTitle,ComplainDescription,Status,UserId")] Complain complain)
+        public async Task<IActionResult> Edit(int id, [Bind("ComplainId,Name,ComplainDate,ComplainTitle,ComplainDescription,Deadline,Status,UserId")] Complain complain)
         {
             if (id != complain.ComplainId)
             {
@@ -304,6 +304,20 @@ namespace ComplainBox.Controllers
             
             string check = "Pending";
             var data = _context.complains.FromSql("SELECT * FROM complains WHERE Status =@p0", check).Include(c=> c.UserAccount).ToList();
+
+            return View(data);
+        }
+
+        public IActionResult Deadline()
+        {
+
+            if (HttpContext.Session.GetString("UserName") == null)
+            {
+                return RedirectToAction("Login", "Complains");
+            }
+
+            string check = "Pending";
+            var data = _context.complains.FromSql("SELECT * FROM complains WHERE Status =@p0", check).Where(d => d.Deadline == DateTime.Today).Include(c => c.UserAccount).ToList();
 
             return View(data);
         }

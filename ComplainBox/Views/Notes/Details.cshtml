@@ -1,0 +1,37 @@
+﻿@model ComplainBox.Models.Note
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Note</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NoteDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoteDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAccount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAccount.ConfirmPassword)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.NoteId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

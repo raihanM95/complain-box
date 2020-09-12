@@ -17,6 +17,6 @@ namespace ComplainBox.Models
 
         public DbSet<Complain> complains { get; set; }
 
-
+        public DbSet<Note> notes { get; set; }
     }
 }

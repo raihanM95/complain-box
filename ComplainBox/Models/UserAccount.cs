@@ -11,6 +11,10 @@ namespace ComplainBox.Models
         [Key]
         public int UserId { get; set; }
 
+        [Display(Name = "ID:")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "ID is Required.")]
+        public string IDNumber { get; set; }
+
         [Display(Name = "Full Name:")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Full Name is Required.")]
         public string Name { get; set; }
