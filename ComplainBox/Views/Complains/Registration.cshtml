@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="Email" id="email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -47,7 +47,7 @@
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Registration" class="btn btn-default" />
+                <input type="submit" onclick="myFunction()" value="Registration" class="btn btn-default" />
             </div>
             @*<div>
             @Html.ValidationMessage("Error", new { @class = "text text-danger" })
@@ -58,4 +58,5 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/email.js"></script>
 }

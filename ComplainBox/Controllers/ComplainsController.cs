@@ -28,7 +28,7 @@ namespace ComplainBox.Controllers
             var roles = new List<SelectListItem>
             {
                 new SelectListItem {Text = "-- Select --", Value = ""},
-                new SelectListItem {Text = "Admin", Value = "Admin"},
+                new SelectListItem {Text = "Coordinator", Value = "Coordinator"},
                 new SelectListItem {Text = "Student", Value = "Student"},
                 new SelectListItem {Text = "Teacher", Value = "Teacher"}
             };
@@ -64,7 +64,7 @@ namespace ComplainBox.Controllers
             var roles = new List<SelectListItem>
             {
                 new SelectListItem {Text = "-- Select --", Value = ""},
-                new SelectListItem {Text = "Admin", Value = "Admin"},
+                new SelectListItem {Text = "Coordinator", Value = "Coordinator"},
                 new SelectListItem {Text = "Student", Value = "Student"},
                 new SelectListItem {Text = "Teacher", Value = "Teacher"}
             };
@@ -94,7 +94,7 @@ namespace ComplainBox.Controllers
                     HttpContext.Session.SetInt32("UserId", user.UserId);
                     // Session["HosName"] = userAccount.Name;
                     // Session["HosEmail"] = Doctor.Email;
-                    if(user.Role == "Admin")
+                    if(user.Role == "Coordinator")
                         return RedirectToAction("ComplainView", "Complains");
                     else
                         return RedirectToAction("ComplainList", "Complains");
@@ -103,10 +103,10 @@ namespace ComplainBox.Controllers
                 {
                     ModelState.AddModelError("Error", "Invalid Email and Password");
 
-                    return View();
+                    return View(objLoginModel);
                 }
             }
-            return View();
+            return View(objLoginModel);
         }
 
         [HttpGet]
